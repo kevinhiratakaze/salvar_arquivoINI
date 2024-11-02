@@ -1,0 +1,29 @@
+program Project1;
+
+{$APPTYPE CONSOLE}
+{$R *.res}
+
+uses
+  System.SysUtils,
+  IniFiles;
+
+var
+  IniFile: TIniFile;
+
+begin
+  IniFile := TIniFile.Create
+    ('C:\Users\User\Desktop\Testes\ArquivoTeste.ini');
+  try
+    try
+      IniFile.WriteString('Seção', 'ChaveString', 'Teste');
+      IniFile.WriteInteger('Seção', 'ChaveInteiro', 42);
+
+    except
+      on E: Exception do
+        Writeln(E.ClassName, ': ', E.Message);
+    end;
+  finally
+    IniFile.Free;
+  end;
+
+end.
